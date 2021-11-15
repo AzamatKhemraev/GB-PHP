@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="content">
-		<h1><?php echo "$hello <span style = \"color: #d40000\">$currentYear</span>"; ?> </h1>
+		<h1><?php echo "$hello  <span style = \"color: #d40000\">$currentYear</span>"; ?> </h1>
 		
 		<ul id="menu">
 			<?php 
