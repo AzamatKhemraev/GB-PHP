@@ -1,62 +1,98 @@
-<?php 
-	$title = "lesson 1";
-	$hello = "Hello world!";
-	$currentYear = date('Y', time());
-	$menuItems = ["home", "archive", "contact"]
-?>
+<?php
+    //Задание 1
+    $a = rand(-10, 10);
+    $b = rand(-10, 10);
+    echo "$a, $b <br>";
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="author" content="Luka Cvrk (www.solucija.com)" />
-	<link rel="stylesheet" href="css/main.css" type="text/css" />
-	<title><?php echo $title; ?></title>
-</head>
-<body>
-	<div id="content">
-		<h1><?php echo "$hello <span style = \"color: #d40000\">$currentYear</span>"; ?> </h1>
-		
-		<ul id="menu">
-			<?php 
-				for ($i=0; $i < count($menuItems); $i++) { 
-					echo "<li><a href=\"#\">$menuItems[$i]</a></li>";
-				};
-			?>
-			
-		</ul>
-	
-		<div class="post">
-			<div class="details">
-				<h2><a href="#">Nunc commodo euismod massa quis vestibulum</a></h2>
-				<p class="info">posted 3 hours ago in <a href="#">general</a></p>
-			
-			</div>
-			<div class="body">
-				<p>Nunc eget nunc libero. Nunc commodo euismod massa quis vestibulum. Proin mi nibh, dignissim a pellentesque at, ultricies sit amet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel lorem eu libero laoreet facilisis. Aenean placerat, ligula quis placerat iaculis, mi magna luctus nibh, adipiscing pretium erat neque vitae augue. Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at ipsum.</p>
-			</div>
-			<div class="x"></div>
-		</div>
-		
-		<div class="col">
-			<h3><a href="#">Ut enim risus rhoncus</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		<div class="col">
-			<h3><a href="#">Maecenas iaculis leo</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		<div class="col last">
-			<h3><a href="#">Quisque consectetur odio</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		
-		<div id="footer">
-		      <p>Copyright <span style="color: red"><?php echo $currentYear; ?></span> &copy; <em>minimalistica</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a></p>
-		</div>	
-	</div>
-</body>
-</html>
+    if ($a >= 0 && $b >= 0) {
+        echo $a - $b;
+    }elseif ($a < 0 && $b < 0){
+        echo $a * $b;
+    }else {
+        echo $a + $b;
+    }
+    echo "<br><br>";
+
+    //Задание 2
+    $c = rand(0, 15);
+
+    switch ($c)
+    {
+        case 0:
+            echo $c++ . " ";
+        case 1:
+            echo $c++ . " ";
+        case 2:
+            echo $c++ . " ";
+        case 3:
+            echo $c++ . " ";
+        case 4:
+            echo $c++ . " ";
+        case 5:
+            echo $c++ . " ";
+        case 6:
+            echo $c++ . " ";
+        case 7:
+            echo $c++ . " ";
+        case 8:
+            echo $c++ . " ";
+        case 9:
+            echo $c++ . " ";
+        case 10:
+            echo $c++ . " ";
+        case 11:
+            echo $c++ . " ";
+        case 12:
+            echo $c++ . " ";
+        case 13:
+            echo $c++ . " ";
+        case 14:
+            echo $c++ . " ";
+        case 15:
+            echo $c++ . " "; 
+    }
+
+    echo "<br><br>";
+
+    //Задание 3
+    function sum($a, $b) {
+        return $a + $b;
+    }
+
+    function diff($a, $b) {
+        return $a - $b;
+    }
+
+    function mul($a, $b) {
+        return $a * $b;
+    }
+
+    function div($a, $b) {
+        return $a / $b;
+    }
+
+    $result = diff(10, 11);
+    echo $result;
+
+    echo "<br><br>";
+
+    //Задание 4
+    function mathOperation($arg1, $arg2, $operation){
+        switch ($operation) {
+            case "sum":
+                return sum($arg1, $arg2);
+            case "diff":
+                return diff($arg1, $arg2);
+            case "mul":
+                return mul($arg1, $arg2);
+            case "div":
+                return div($arg1, $arg2);
+        }
+    }
+
+    $result2 = mathOperation(5, 7, 'mul');
+    echo $result2;
+
+    echo "<br><br>";
+
+?>
