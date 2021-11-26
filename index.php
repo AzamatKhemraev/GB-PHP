@@ -1,62 +1,107 @@
-<?php 
-	$title = "lesson 1";
-	$hello = "Hello world!";
-	$currentYear = date('Y', time());
-	$menuItems = ["home", "archive", "contact"]
+<?php
+//Задание 1
+$i = 0;
+
+while ($i <= 100) {
+    if ($i % 3 == 0) {
+        echo " $i ";
+    }
+    $i++;
+}
+
+echo "<br>";
+
+//Задание 2
+$a = 0;
+
+do {
+    if ($a == 0) {
+        echo "$a - ноль <br>";
+    } elseif ($a % 2 == 0) {
+        echo "$a - четное число <br>";
+    } else {
+        echo "$a - нечетное число <br>";
+    }
+    $a++;
+} while ($a <= 10);
+
+echo "<br>";
+
+//Задание 3
+$cities = ["Московская область" => ["Москва", "Зеленоград", "Клин"]
+          ,"Ленинградская область" => ["Санкт-Петербург", "Всеволожск", "Павловск", "Кронштадт"]
+          ,"Рязанская область" => ["Рязань", "Касимов", "Скопин", "Михайлов"]];
+
+foreach ($cities as $key => $region){
+    echo "<p> $key: <br>".implode(', ', $region)."</p>";
+}
+
+echo "<br>";
+
+//Задание 4
+function transliterate($text) {
+
+    $alphabet = [
+        "а" => "a",  "б" => "b",  "в"  => "v", "г"  => "g", "д"  => "d",  "е"  => "e",
+        "ё" => "yo", "ж" => "zh", "з"  => "z", "и"  => "i", "й"  => "j",  "к"  => "k",
+        "л" => "l",  "м" => "m",  "н"  => "n", "о"  => "o", "п"  => "p",  "р"  => "r",
+        "с" => "s",  "т" => "t",  "у"  => "u", "ф"  => "f", "х"  => "x",  "ц"  => "c",
+        "ч" => "ch", "ш" => "sh", "щ"  => "sch", "ь"  => "'", "ы"  => "yh", "ъ"  => "'",
+        "э" => "eh", "ю" => "yu", "я"  => "ya",
+
+        "А" => "A",  "Б" => "B",  "В"  => "V", "Г"  => "G", "Д"  => "D",  "Е"  => "E",
+        "Ё" => "YO", "Ж" => "ZH", "З"  => "Z", "И"  => "I", "Й"  => "J",  "К"  => "K",
+        "Л" => "L",  "М" => "M",  "Н"  => "N", "О"  => "O", "П"  => "P",  "Р"  => "R",
+        "С" => "S",  "Т" => "T",  "У"  => "U", "Ф"  => "F", "Х"  => "X",  "Ц"  => "C",
+        "Ч" => "CH", "Ш" => "SH", "Щ"  => "W", "Ь"  => "'", "Ы"  => "YH", "Ъ"  => "`",
+        "Э" => "EH", "Ю" => "YU", "Я"  => "YA",
+    ];
+
+    return strtr($text, $alphabet);
+}
+
+echo transliterate('Ночь, улица, фонарь, аптека, Бессмысленный и тусклый свет.');
+
+echo "<br>";
+
+//Задание 5
+function replacer($replaceValue, $valueForReplacement, $text) {
+    return str_replace($replaceValue, $valueForReplacement, $text);
+}
+
+echo replacer(' ', '_', 'Ночь, улица, фонарь, аптека, Бессмысленный и тусклый свет.');
+
+echo "<br>";
+
+//Задание 6
+$menu = [
+    'Item1' => ['Ночь', 'улица'],
+    'Item2' => ['фонарь', 'аптека'],
+    'Item3' => ['Бессмысленный и тусклый свет'],
+];
+echo '<ul>';
+foreach ($menu as $key => $val) { ?>
+    <li><?php echo $key; ?>  
+
+        <ul>
+            <?php
+
+            foreach ($val as $item) { ?>      
+                <li><?php echo $item; ?></li>
+            <?php }
+
+            ?>
+        </ul>
+
+    </li>
+<?php }
+echo '</ul>';
+
+
+echo "<br>";
+
+//Задание 7
+for($i = 0; $i < 10; print $i++) {}
+
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="author" content="Luka Cvrk (www.solucija.com)" />
-	<link rel="stylesheet" href="css/main.css" type="text/css" />
-	<title><?php echo $title; ?></title>
-</head>
-<body>
-	<div id="content">
-		<h1><?php echo "$hello <span style = \"color: #d40000\">$currentYear</span>"; ?> </h1>
-		
-		<ul id="menu">
-			<?php 
-				for ($i=0; $i < count($menuItems); $i++) { 
-					echo "<li><a href=\"#\">$menuItems[$i]</a></li>";
-				};
-			?>
-			
-		</ul>
-	
-		<div class="post">
-			<div class="details">
-				<h2><a href="#">Nunc commodo euismod massa quis vestibulum</a></h2>
-				<p class="info">posted 3 hours ago in <a href="#">general</a></p>
-			
-			</div>
-			<div class="body">
-				<p>Nunc eget nunc libero. Nunc commodo euismod massa quis vestibulum. Proin mi nibh, dignissim a pellentesque at, ultricies sit amet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel lorem eu libero laoreet facilisis. Aenean placerat, ligula quis placerat iaculis, mi magna luctus nibh, adipiscing pretium erat neque vitae augue. Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at ipsum.</p>
-			</div>
-			<div class="x"></div>
-		</div>
-		
-		<div class="col">
-			<h3><a href="#">Ut enim risus rhoncus</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		<div class="col">
-			<h3><a href="#">Maecenas iaculis leo</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		<div class="col last">
-			<h3><a href="#">Quisque consectetur odio</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		
-		<div id="footer">
-		      <p>Copyright <span style="color: red"><?php echo $currentYear; ?></span> &copy; <em>minimalistica</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a></p>
-		</div>	
-	</div>
-</body>
-</html>
