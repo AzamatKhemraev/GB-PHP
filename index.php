@@ -1,62 +1,31 @@
-<?php 
-	$title = "lesson 1";
-	$hello = "Hello world!";
-	$currentYear = date('Y', time());
-	$menuItems = ["home", "archive", "contact"]
-?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="style.css" />
+    <title>slider</title>
+  </head>
+  <body>
+    <div class="slider">
+    <?php
+        include_once("sqlconnect.php");
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
-	<meta name="author" content="Luka Cvrk (www.solucija.com)" />
-	<link rel="stylesheet" href="css/main.css" type="text/css" />
-	<title><?php echo $title; ?></title>
-</head>
-<body>
-	<div id="content">
-		<h1><?php echo "$hello <span style = \"color: #d40000\">$currentYear</span>"; ?> </h1>
-		
-		<ul id="menu">
-			<?php 
-				for ($i=0; $i < count($menuItems); $i++) { 
-					echo "<li><a href=\"#\">$menuItems[$i]</a></li>";
-				};
-			?>
-			
-		</ul>
-	
-		<div class="post">
-			<div class="details">
-				<h2><a href="#">Nunc commodo euismod massa quis vestibulum</a></h2>
-				<p class="info">posted 3 hours ago in <a href="#">general</a></p>
-			
-			</div>
-			<div class="body">
-				<p>Nunc eget nunc libero. Nunc commodo euismod massa quis vestibulum. Proin mi nibh, dignissim a pellentesque at, ultricies sit amet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vel lorem eu libero laoreet facilisis. Aenean placerat, ligula quis placerat iaculis, mi magna luctus nibh, adipiscing pretium erat neque vitae augue. Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at ipsum.</p>
-			</div>
-			<div class="x"></div>
-		</div>
-		
-		<div class="col">
-			<h3><a href="#">Ut enim risus rhoncus</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		<div class="col">
-			<h3><a href="#">Maecenas iaculis leo</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		<div class="col last">
-			<h3><a href="#">Quisque consectetur odio</a></h3>
-			<p>Quisque consectetur odio ut sem semper commodo. Maecenas iaculis leo a ligula euismod condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Ut enim risus, rhoncus sit amet ultricies vel, aliquet ut dolor. Duis iaculis urna vel massa ultricies suscipit. Phasellus diam sapien, fermentum a eleifend non, luctus non augue. Quisque scelerisque purus quis eros sollicitudin gravida. Aliquam erat volutpat. Donec a sem consequat tortor posuere dignissim sit amet at.</p>
-			<p>&not; <a href="#">read more</a></p>
-		</div>
-		
-		<div id="footer">
-		      <p>Copyright <span style="color: red"><?php echo $currentYear; ?></span> &copy; <em>minimalistica</em> &middot; Design: Luka Cvrk, <a href="http://www.solucija.com/" title="Free CSS Templates">Solucija</a></p>
-		</div>	
-	</div>
-</body>
+        $sql = "SELECT * FROM gallery";
+        $table = mysqli_query($connect, $sql);
+        while ($data = mysqli_fetch_assoc($table)) :
+    ?>
+      <div class="slider__item" style="background-image: url(images/<?= $data['name'] ?>)">
+          <a href='image.php?id=<?= $data['id'] ?>' class="city_name"><?= $data['content'] ?></a>
+      </div>
+      
+      <?php endwhile; ?>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
 </html>
