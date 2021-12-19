@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 17 2021 г., 20:46
+-- Время создания: Дек 19 2021 г., 16:12
 -- Версия сервера: 5.5.62
 -- Версия PHP: 7.1.33
 
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- База данных: `gb_php_basic_course`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL COMMENT 'уникальный идентификатор',
+  `product_id` int(11) NOT NULL COMMENT 'идентификатор добавленного товара',
+  `user_id` int(11) NOT NULL COMMENT 'идентификатор пользователя, который добавил товар в корзину'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -41,7 +53,9 @@ CREATE TABLE `comments` (
 
 INSERT INTO `comments` (`id`, `product_id`, `fio`, `text`, `date`) VALUES
 (98, 1, 'Хемраев А.', 'классная куртка', '2021-12-17 17:42:08'),
-(99, 2, 'Х. Азамат', 'Не советую покупать!!!', '2021-12-17 17:42:41');
+(99, 2, 'Х. Азамат', 'Не советую покупать!!!', '2021-12-17 17:42:41'),
+(100, 1, 'Вася Пупкин', 'фыравдлорфа офырда фод', '2021-12-18 15:30:52'),
+(101, 6, 'NoName', 'пышпыш ололо', '2021-12-18 15:31:26');
 
 -- --------------------------------------------------------
 
@@ -77,27 +91,54 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL COMMENT 'Уникальный идентификатор товара',
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Наименование товара',
   `price` int(11) NOT NULL COMMENT 'Цена товара',
-  `src` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Файл с изображением товара'
+  `src` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Файл с изображением товара',
+  `product_description` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'Полное название товара'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `products`
 --
 
-INSERT INTO `products` (`id`, `name`, `price`, `src`) VALUES
-(1, 'item_1', 250, 'item_1.jpg'),
-(2, 'item_2', 401, 'item_2.jpg'),
-(3, 'item_3', 188, 'item_3.jpg'),
-(4, 'item_4', 662, 'item_4.jpg'),
-(5, 'item_5', 702, 'item_5.jpg'),
-(6, 'item_6', 369, 'item_6.jpg'),
-(7, 'item_7', 803, 'item_7.jpg'),
-(8, 'item_8', 479, 'item_8.jpg'),
-(9, 'item_9', 733, 'item_9.jpg');
+INSERT INTO `products` (`id`, `name`, `price`, `src`, `product_description`) VALUES
+(1, 'item_1', 250, 'item_1.jpg', 'Куртка'),
+(2, 'item_2', 401, 'item_2.jpg', 'Рубашка красная'),
+(3, 'item_3', 188, 'item_3.jpg', 'Худи'),
+(4, 'item_4', 662, 'item_4.jpg', 'Брюки желтые'),
+(5, 'item_5', 702, 'item_5.jpg', 'Лонгслив'),
+(6, 'item_6', 369, 'item_6.jpg', 'Бейсболка'),
+(7, 'item_7', 803, 'item_7.jpg', 'Рубашка классическая'),
+(8, 'item_8', 479, 'item_8.jpg', 'Куртка кожанная'),
+(9, 'item_9', 733, 'item_9.jpg', 'Шорты Balenciaga');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL COMMENT 'id пользователя',
+  `name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'имя пользователя',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'email пользователя',
+  `pass` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'пароль пользователя'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `pass`) VALUES
+(1, 'Azamat', 'admin@admin.ru', '12345');
 
 --
 -- Индексы сохранённых таблиц
 --
+
+--
+-- Индексы таблицы `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Индексы таблицы `comments`
@@ -119,14 +160,26 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT для сохранённых таблиц
 --
+
+--
+-- AUTO_INCREMENT для таблицы `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'уникальный идентификатор', AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'уникальный идентификатор', AUTO_INCREMENT=100;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'уникальный идентификатор', AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT для таблицы `gallery`
@@ -139,6 +192,12 @@ ALTER TABLE `gallery`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Уникальный идентификатор товара', AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id пользователя', AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
